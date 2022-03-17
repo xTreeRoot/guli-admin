@@ -8,7 +8,7 @@ export default {
   getSubjectList(current, limit, teacherQuery) {
     return request({
 
-      url: `/eduservice/subject/getAllSbject`,
+      url: `/eduservice/subject/getAllSubject`,
       method: 'get'
     })
   }
