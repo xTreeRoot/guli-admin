@@ -31,5 +31,27 @@ export default {
       method:'post',
       data:courseInfo
     })
+  },
+  //课程确认信息
+  getPublicCourseInfo(id){
+    return request({
+      url:`/eduservice/course/getPublicCourseInfo/${id}`,
+      method: 'get'
+    })
+  },
+  //课程最终发布
+  PublicCourse(id){
+    return request({
+      url:`/eduservice/course/publishCourse/${id}`,
+      method: 'post'
+    })
+  },
+  //TODO课程列表
+//课程最终发布
+  getListCourse(){
+    return request({
+      url:`/eduservice/course`,
+      method: 'get'
+    })
   }
 }

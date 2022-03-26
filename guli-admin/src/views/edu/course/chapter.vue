@@ -30,7 +30,7 @@
             <p>{{ video.title }}
               <span class="acts">
                     <el-button type="text">编辑</el-button>
-                    <el-button type="text">删除</el-button>
+                    <el-button type="text" @click="removeVideo(video.id)">删除</el-button>
                     </span>
             </p>
           </li>
@@ -124,12 +124,37 @@ export default {
   },
   methods: {
     // =====================================小节操作 =====================================
+    //删除小节
+    removeVideo(id){
+      this.$confirm('此操作将永久删除讲该师小节, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        video
+          .deleteVideo(id)
+          .then(response => {
+            // 删除成功
+            // 提示信息
+            // 刷新页面
+            this.$message({
+              type: 'success',
+              message: '删除小节成功!'
+            })
+            //刷新页面
+            this.getChapterVideo()
+          })
+      })
+    },
 
     openVideo(chapterId) {
       //  弹框
       this.dialogVideoFormVisible = true,
         //    设置章节id
-        this.video.chapterId = chapterId
+      this.video.chapterId = chapterId
+      this.video.title = ''
+      this.video.sort = 0
+      this.video.free = 0
 
     },
     addVideo() {
@@ -145,6 +170,8 @@ export default {
           })
           //刷新页面
           this.getChapterVideo()
+
+
         })
     },
     saveOrUpdateVideo() {
@@ -170,6 +197,7 @@ export default {
             })
             //刷新页面
             this.getChapterVideo()
+
           })
       })
     },
@@ -202,7 +230,7 @@ export default {
           this.dialogChapterFormVisible = false
           // 提示
           this.$message({
-            type: 'sucess',
+            type: 'success',
             message: '添加章节成功'
           })
           //刷新页面
@@ -218,7 +246,7 @@ export default {
           this.dialogChapterFormVisible = false
           // 提示
           this.$message({
-            type: 'sucess',
+            type: 'success',
             message: '修改章节成功'
           })
           //刷新查询
