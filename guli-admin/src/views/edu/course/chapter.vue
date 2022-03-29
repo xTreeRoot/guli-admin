@@ -149,6 +149,19 @@ export default {
     //点击确定调用的方法
     handleVodRemove(){
     //  调用接口的删除
+      video.deleteAliyunvod(this.video.videoSourceId )
+      .then(response=>{
+        this.$message({
+          type: 'success',
+          message: '删除视频成功!'
+        })
+        //把文件列表清空
+        this.fileList=[]
+        //视频id
+        this.video.videoSourceId = ''
+        //视频名称
+        this .video. videoOriginalName =''
+      })
     },
     //点击x调用这个方法
     beforeVodRemove(file,fileList){
