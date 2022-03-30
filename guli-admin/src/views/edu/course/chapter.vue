@@ -231,6 +231,14 @@ export default {
     },
     saveOrUpdateVideo() {
       this.addVideo()
+      //把文件列表清空
+      this.fileList=[]
+      //视频id
+      this.video.videoSourceId = ''
+      //视频名称
+      this .video. videoOriginalName =''
+      // this.$router.go(0)
+
     },
     // =====================================章节操作 =====================================
     //删除章节
