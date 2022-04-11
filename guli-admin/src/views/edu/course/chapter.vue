@@ -220,7 +220,7 @@ export default {
           this.dialogVideoFormVisible = false
           // 提示
           this.$message({
-            type: 'sucess',
+            type: 'success',
             message: '添加小节成功'
           })
           //刷新页面

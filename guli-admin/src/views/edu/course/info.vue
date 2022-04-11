@@ -125,7 +125,7 @@ export default {
       course.updateCourseInfoId(this.courseInfo)
         .then(response => {
           this.$message({
-            type: 'sucess',
+            type: 'success',
             message: '修改课程信息成功'
           })
 
@@ -139,7 +139,7 @@ export default {
         .then(response => {
           //  提示
           this.$message({
-            type: 'sucess',
+            type: 'success',
             message: '添加课程信息成功'
           })
 
