@@ -38,7 +38,7 @@
 
 <script>
 import echarts from 'echarts'
-
+import sta from "../../api/sta";
 export default {
   name: "show",
   data() {
@@ -55,12 +55,16 @@ export default {
       yData: []
     }
   },
-  created() {
-  },
+
   methods: {
     showChart() {
-      this.initChartData()
-      this.setChart()
+      sta.getData(this.searchObj)
+      .then(response=>{
+        this.xData = response.data.date_calculatedList,
+          this.yData =response.data.numDataList
+        this.setChart()
+
+      })
     },
 // 准备图表数据
     initChartData() {
@@ -75,7 +79,7 @@ export default {
 // x轴是类目轴（离散数据）,必须通过data设置类目数据
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: this.xData
         },// y轴是数据轴（连续数据）
         yAxis: {
           type: 'value'
@@ -83,7 +87,7 @@ export default {
 // 系列列表。每个系列通过 type 决定自己的图表类型
         series: [{
 // 系列中的数据内容数组
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          data: this.yData,
 // 折线图
           type: 'line'
         }]
